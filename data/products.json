@@ -1,0 +1,62 @@
+[
+  {
+    "id": "1",
+    "slug": "vintage-runner",
+    "name": "Vintage Runner",
+    "category": "Sneakers",
+    "price": 129,
+    "stock": 12,
+    "image": "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=900&q=80",
+    "description": "Classic retro sneakers crafted for style and comfort with a premium leather finish."
+  },
+  {
+    "id": "2",
+    "slug": "heritage-hoops",
+    "name": "Heritage Hoops",
+    "category": "Sneakers",
+    "price": 149,
+    "stock": 8,
+    "image": "https://images.unsplash.com/photo-1528701800489-20f5cfffe4b3?auto=format&fit=crop&w=900&q=80",
+    "description": "A bold high-top silhouette designed for street-ready looks and everyday wear."
+  },
+  {
+    "id": "3",
+    "slug": "artisan-hoodie",
+    "name": "Artisan Hoodie",
+    "category": "Apparel",
+    "price": 79,
+    "stock": 24,
+    "image": "https://images.unsplash.com/photo-1520975918085-8a30d8dbd4af?auto=format&fit=crop&w=900&q=80",
+    "description": "Soft, premium hoodie with a classic vintage wash and relaxed fit."
+  },
+  {
+    "id": "4",
+    "slug": "sunset-shades",
+    "name": "Sunset Shades",
+    "category": "Eyewear",
+    "price": 59,
+    "stock": 16,
+    "image": "https://images.unsplash.com/photo-1518546305926-2facb7592a07?auto=format&fit=crop&w=900&q=80",
+    "description": "Retro-inspired sunglasses with tinted lenses and a refined frame."
+  },
+  {
+    "id": "5",
+    "slug": "heritage-tote",
+    "name": "Heritage Tote",
+    "category": "Bags",
+    "price": 95,
+    "stock": 14,
+    "image": "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=900&q=80",
+    "description": "A sturdy canvas tote with leather trim made for daily essentials."
+  },
+  {
+    "id": "6",
+    "slug": "classic-cap",
+    "name": "Classic Cap",
+    "category": "Accessories",
+    "price": 32,
+    "stock": 34,
+    "image": "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=900&q=80",
+    "description": "A timeless cap finished with a premium embroidered logo and soft cotton." 
+  }
+]

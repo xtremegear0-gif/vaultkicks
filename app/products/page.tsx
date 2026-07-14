@@ -1,63 +1,46 @@
-'use client'
+﻿'use client'
 
-import { useState, useEffect } from 'react'
+import { useMemo, useState } from 'react'
 import Link from 'next/link'
+import products from '@/data/products.json'
+
+const categories = ['All', 'Sneakers', 'Apparel', 'Eyewear', 'Bags', 'Accessories']
 
 export default function ProductsPage() {
-  const [products, setProducts] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [category, setCategory] = useState('')
+  const [category, setCategory] = useState('All')
   const [search, setSearch] = useState('')
 
-  useEffect(() => {
-    fetchProducts()
+  const filteredProducts = useMemo(() => {
+    return products.filter((product) => {
+      const matchesCategory = category === 'All' || product.category === category
+      const matchesSearch = product.name.toLowerCase().includes(search.toLowerCase())
+      return matchesCategory && matchesSearch
+    })
   }, [category, search])
 
-  const fetchProducts = async () => {
-    setLoading(true)
-    try {
-      const params = new URLSearchParams()
-      if (category) params.append('category', category)
-      if (search) params.append('search', search)
-
-      const res = await fetch(`/api/products?${params}`)
-      const data = await res.json()
-      setProducts(data.products || [])
-    } catch (error) {
-      console.error('Failed to fetch products:', error)
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  const categories = ['All', 'Nike', 'Adidas', 'Jordan', 'Yeezy', 'Lebron', 'Other']
-
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
-      <div className="max-w-6xl mx-auto px-4">
-        <h1 className="text-4xl font-bold mb-8\">All Products</h1>
+    <div className="min-h-screen bg-[#f7efe6] py-14">
+      <div className="max-w-6xl mx-auto px-6">
+        <h1 className="text-4xl font-display font-semibold mb-8 text-espresso">All Products</h1>
 
-        {/* Search and Filter */}
         <div className="mb-8 space-y-4">
-          {/* Search Bar */}
           <input
             type="text"
             placeholder="Search products..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+            className="w-full px-4 py-3 border border-[#d2c2ab] rounded-full bg-white text-espresso focus:outline-none focus:ring-2 focus:ring-[#b58b3f]"
           />
 
-          {/* Category Filter */}
-          <div className="flex gap-2 flex-wrap">
+          <div className="flex flex-wrap gap-3">
             {categories.map((cat) => (
               <button
                 key={cat}
-                onClick={() => setCategory(cat === 'All' ? '' : cat)}
-                className={`px-4 py-2 rounded-lg font-medium transition ${
-                  (category === '' && cat === 'All') || category === cat
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-white border border-gray-300 text-gray-700 hover:bg-gray-50'
+                onClick={() => setCategory(cat)}
+                className={`px-4 py-2 rounded-full font-medium transition ${
+                  category === cat
+                    ? 'bg-espresso text-cream'
+                    : 'bg-white border border-[#e0d2bc] text-espresso hover:bg-[#f6ede0]'
                 }`}
               >
                 {cat}
@@ -66,40 +49,29 @@ export default function ProductsPage() {
           </div>
         </div>
 
-        {/* Products Grid */}
-        {loading ? (
-          <div className="text-center py-12">Loading products...</div>
-        ) : products.length > 0 ? (
+        {filteredProducts.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {products.map((product: any) => (
+            {filteredProducts.map((product) => (
               <Link key={product.id} href={`/products/${product.slug}`}>
-                <div className="bg-white rounded-lg overflow-hidden hover:shadow-xl transition-shadow cursor-pointer h-full">
-                  <div className="relative pb-[100%] overflow-hidden bg-gray-100">
+                <div className="card-vintage overflow-hidden transition-transform hover:-translate-y-1 cursor-pointer">
+                  <div className="relative pb-[100%] overflow-hidden bg-parchment">
                     <img
                       src={product.image}
                       alt={product.name}
-                      className="absolute w-full h-full object-cover hover:scale-105 transition-transform"
+                      className="absolute inset-0 w-full h-full object-cover"
                     />
                   </div>
-                  <div className="p-4">
-                    <h3 className="text-lg font-semibold mb-2">{product.name}</h3>
-                    <p className="text-gray-600 text-sm mb-2">{product.category}</p>
-                    <p className="text-sm text-gray-500 mb-4 line-clamp-2">{product.description}</p>
-                    <div className="flex justify-between items-center">
-                      <p className="text-2xl font-bold text-blue-600">${product.price}</p>
-                      <span className={`text-sm font-medium ${product.stock > 0 ? 'text-green-600' : 'text-red-600'}`}>
-                        {product.stock > 0 ? 'In Stock' : 'Out of Stock'}
-                      </span>
-                    </div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-semibold mb-2 text-espresso">{product.name}</h3>
+                    <p className="text-saddle mb-3 text-sm uppercase tracking-[0.12em]">{product.category}</p>
+                    <p className="text-2xl font-bold text-gold">${product.price}</p>
                   </div>
                 </div>
               </Link>
             ))}
           </div>
         ) : (
-          <div className="text-center py-12 text-gray-600">
-            No products found. Try adjusting your search or filters.
-          </div>
+          <div className="text-center py-16 text-moss">No products found. Try another search.</div>
         )}
       </div>
     </div>
