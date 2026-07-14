@@ -1,0 +1,100 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: #f3ece1;
+}
+
+body {
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  color: #2f1f17;
+  background: radial-gradient(circle at top, rgba(255, 255, 255, 0.92), transparent 32%),
+    linear-gradient(180deg, #f7efe6 0%, #e7d8c7 100%);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+}
+
+::selection {
+  background: #b58b3f;
+  color: #fff;
+}
+
+a {
+  color: #5a503f;
+  text-decoration: underline;
+  text-decoration-color: rgba(181, 139, 63, 0.35);
+}
+
+a:hover {
+  color: #2f1f17;
+}
+
+.hero-bg {
+  background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.85), transparent 40%),
+    linear-gradient(180deg, #f3ece1 0%, #d6bfa2 100%);
+}
+
+.btn-vintage {
+  @apply inline-block rounded-full border border-[#8c6a50] bg-[#f7efe6] px-8 py-3 text-sm font-semibold text-[#2f1f17] transition-all duration-200 hover:bg-[#f0dec2] hover:border-[#5a503f];
+}
+
+.card-vintage {
+  @apply rounded-[32px] bg-white/85 border border-[#dfcab0] shadow-vintage backdrop-blur-sm;
+}
+
+.section-heading {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+.btn-secondary {
+  @apply inline-block rounded-full border border-[#8c6a50] bg-transparent px-6 py-2 text-sm font-semibold text-[#8c6a50] transition-all duration-200 hover:bg-[#f7efe6];
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+input,
+textarea,
+select {
+  outline: none;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(243, 236, 225, 0.8);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(140, 106, 80, 0.6);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(140, 106, 80, 0.9);
+}
